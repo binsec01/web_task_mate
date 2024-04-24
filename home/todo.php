@@ -1,3 +1,17 @@
+<?php
+// Start or resume session
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.html");
+    exit();
+}
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : $_COOKIE['user_id'];
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : $_COOKIE['user_name'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,38 +39,29 @@
       <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
       >
-        <a
-          href="/"
-          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
-        >
-          <svg
-            class="bi me-2"
-            width="40"
-            height="32"
-            role="img"
-            aria-label="Bootstrap"
-          >
-            <use xlink:href="#bootstrap"></use>
-          </svg>
+        <a href="../" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+        <img class="bi me-2" src="https://img.logoipsum.com/225.svg" alt="TASK-MATE" width="40" height="32">
+        <span class="fs-4">Task Mate</span>
         </a>
 
         <div class="col-md-3 text-end">
-          <button type="button" class="btn btn-primary me-2">Profile</button>
-          <button type="button" class="btn btn-warning">Logout</button>
+        <p class="text-muted">Logged in as: <?php echo $user_name; ?></p>        
+          <a class="btn btn-primary me-2" href="../profile.php" role="button">Profile</a>
+          <a class="btn btn-warning" href="logout.php" role="button">Logout</a>
         </div>
       </header>
     </div>
 
     <div class="container">
+      <form id="addTask">
       <label for="input" class="form-label">Task Name: </label>
-      <input type="text" id="input" class="form-control" aria-describedby="task"/>
+      <input type="text" id="taskName" name="taskName" class="form-control" aria-describedby="task"/>
       <label for="input" class="form-label mt-1">Task Description: </label>
-      <input type="text" id="input" class="form-control" aria-describedby="task"/>
+      <input type="text" id="description" name="description" class="form-control" aria-describedby="task"/>
       
-      <button type="button" class="btn btn-primary me-2 md-auto mt-3">Add to list</button>
-
+      <button type="submit" class="btn btn-primary me-2 md-auto mt-3">Add to list</button>
+      </form>
     </div>
-
     <div class="container pt-10 mt-5">
         <ol class="list-group list-group-numbered ">
             <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -70,5 +75,7 @@
             </ol>
     </div>
     
+<script src="../assets/js/add_task.js"></script>
+<script src="../assets/js/actions.js"></script>
   </body>
 </html>

@@ -94,16 +94,16 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
    
 <main class="form-signin w-100 m-auto">
-  <form>
-    <img class="mb-4" src="" alt="TASK-MATE" width="72" height="57">
+  <form id="registerForm">
+    <img class="mb-4" src="https://img.logoipsum.com/225.svg" alt="TASK-MATE" width="75" height="60">
     <h1 class="h3 mb-3 fw-normal">Sign up</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" class="form-control" id="username" name="username" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating mt-3">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 
@@ -111,11 +111,15 @@
     <p class="text-center pt-3">Already Registered? <a href="login.html">Login Here</a></p>
     <p class="mt-3 mb-3 text-body-secondary text-center">&copy; Task - Mate Inc, 2024</p>
   </form>
+
+
+  <div id="errorMessage" class="d-none alert alert-danger text-center" role="alert"></div>
 </main>
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 crossorigin="anonymous"
 ></script>
+<script src="assets/js/reg.js"></script>
     </body>
 </html>

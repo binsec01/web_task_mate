@@ -1,24 +1,25 @@
 <?php
-// Include database connection
+
 include('../includes/db.php');
 
-// Check if form is submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+    
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    echo "$username, $password";
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert user data into database
+    
     $query = "INSERT INTO users (username, password) VALUES (?, ?)";
     $statement = $db->prepare($query);
-    $statement->bind_param("ss", $username, $password);
+    $statement->bind_param("ss", $username, $hashed_password);
     $statement->execute();
     $statement->close();
-
-    // Redirect to login page
-    header("Location: ../login.html");
-    exit();
+    
+    $message = array('status' => "success");
+} else {
+    $message = array('status' => "failed");
 }
+echo json_encode($message);
 ?>

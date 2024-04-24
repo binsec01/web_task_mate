@@ -2,9 +2,9 @@
 
 // Database configuration
 $db_host = 'localhost';  // Hostname
-$db_username = 'rahat';  // MySQL username
-$db_password = 'password';  // MySQL password
-$db_name = 'task_mate';  // Database name
+$db_username = 'akash';  // MySQL username
+$db_password = 'secretpassword';  // MySQL password
+$db_name = 'taskmate_db';  // Database name
 
 // Create a new MySQLi instance
 $db = new mysqli($db_host, $db_username, $db_password, $db_name);

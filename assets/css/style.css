@@ -1,0 +1,27 @@
+/* Custom CSS Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    background-color: #343a40 !important;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.lines {
+    white-space: nowrap; /* Prevent wrapping of text */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflow text */
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-text {
+    color: #666;
+}

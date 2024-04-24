@@ -3,9 +3,9 @@ include('../includes/db.php');
 
 // Assuming you receive task ID and updated task data via POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $task_id = $_POST['task_id'];
-    $updated_task_name = $_POST['updated_task_name'];
-    $updated_description = $_POST['updated_description'];
+    $task_id = $_POST['taskId'];
+    $updated_task_name = $_POST['task_name'];
+    $updated_description = $_POST['description'];
 
     // Prepare and execute SQL query to update task in the database
     $query = "UPDATE tasks SET task_name = ?, description = ? WHERE id = ?";
@@ -14,7 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement->execute();
 
     // Redirect user back to the todo page after editing the task
-    header("Location: ../home/todo.html");
+    echo json_encode(array('status' => 'success'));
+    exit();
+} else {
+    // Invalid request method
+    echo json_encode(array('status' => 'error'));
     exit();
 }
 ?>

@@ -1,20 +1,39 @@
 <?php
+
+session_start();
+
+
+if (!isset($_SESSION['user_id'])) {
+    
+    header("Location: login.html");
+    exit();
+}
+
 include('../includes/db.php');
 
-// Assuming you have a form submitting task data via POST method
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Assuming you have form fields named 'task_name' and 'description'
+    
+    $user_id = $_SESSION['user_id'];
+
+    
     $task_name = $_POST['task_name'];
     $description = $_POST['description'];
 
-    // Prepare and execute SQL query to insert task into database
-    $query = "INSERT INTO tasks (task_name, description) VALUES (?, ?)";
+    
+    $query = "INSERT INTO tasks (user_id, task_name, description, completed, created_at) VALUES (?, ?, ?, 0, CURRENT_TIMESTAMP)";
     $statement = $db->prepare($query);
-    $statement->bind_param("ss", $task_name, $description);
+    $statement->bind_param("iss", $user_id, $task_name, $description);
     $statement->execute();
+    $statement->close();
 
-    // Redirect user back to the todo page after adding the task
-    header("Location: ../home/todo.html");
+    
+    
+    echo json_encode(array('status' => 'success'));
+    exit();
+} else {
+    
+    echo json_encode(array('status' => 'error'));
     exit();
 }
 ?>
