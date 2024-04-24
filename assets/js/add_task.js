@@ -2,7 +2,7 @@
             var form = document.getElementById("addTask");
 
             form.addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault(); 
 
                 var taskName = document.getElementById("taskName").value;
                 var description = document.getElementById("description").value;

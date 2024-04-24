@@ -1,6 +1,6 @@
 <?php
 
-// Start or resume session
+
 session_start();
 
 
